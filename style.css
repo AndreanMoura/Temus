@@ -1,0 +1,146 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #0c0707;
+}
+h1 {
+    color: #f7f2f5;
+}
+
+h2{
+    color: #f7f5f5;
+}
+
+p{
+    color: #f7f5f5;
+}
+
+/* Estilo do fundo dinâmico */
+#background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    z-index: -1; /* Fica atrás do conteúdo */
+    background-size: cover;  /* Faz o fundo cobrir a tela sem distorcer */
+    background-position: center;  /* Centraliza o fundo */
+    transition: background-image 1s ease-in-out; /* Anima a transição entre as imagens */
+}
+
+/* Estilo geral do relógio */
+#relogio {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #f4f3f4;
+    display: flex; /* Flexbox para alinhar os itens lado a lado */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 20px; /* Espaço entre os itens */
+    flex-wrap: wrap; /* Permite que os itens quebrem em várias linhas, caso necessário */
+}
+
+/* Cada item do tempo (Meses, Dias, etc.) */
+.tempo-item {
+    display: flex;
+    flex-direction: column; /* Coloca o rótulo e o número em coluna */
+    align-items: center; /* Centraliza o conteúdo de cada item */
+    justify-content: center; /* Centraliza o conteúdo de cada item */
+    margin: 10px; /* Espaço entre os itens */
+    border: 1px solid #f7f2f5;
+    border-radius: 10px; /* Arredonda os cantos */
+    padding: 10px;
+    background-color: #111;
+}
+
+/* Restante do CSS do relógio */
+.rótulo {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: medium;
+    color: #eaeaec;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.valor {
+    font-size: 22px;
+    color: #f7f5f5;
+}
+
+/* Estilo do slide de fotos */
+#slider-container {
+    width: 90%;
+    max-width: 100%;
+    height: 1200px;
+    margin: 50px auto;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #f2eded;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#slider {
+    display: flex;
+    animation: slide 30s infinite linear;
+}
+
+.slide {
+    min-width: 100%;
+    transition: transform 1s;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Animação do slide */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(-200%);
+    }
+    75% {
+        transform: translateX(-300%);
+    }
+    100% {
+        transform: translateX(-400%);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    #relogio {
+        font-size: 2em;
+        gap: 15px;
+    }
+
+    .tempo-item {
+        font-size: 1.2em;
+        padding: 1px;
+        min-width: 75px;
+    }
+
+    .rótulo {
+        font-size: 10px;
+    }
+
+    .valor {
+        font-size: 18px;
+    }
+
+    #slider-container {
+        width: 95%;
+        height: 550px;
+    }
+}
