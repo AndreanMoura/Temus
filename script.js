@@ -17,33 +17,51 @@ function atualizarContador() {
     const segundos = Math.floor((diff % (1000 * 60)) / 1000);
   
     // Atualizar os elementos no HTML
-    document.getElementById('meses').textContent = meses;
-    document.getElementById('dias').textContent = dias;
-    document.getElementById('horas').textContent = horas < 10 ? '0' + horas : horas;
-    document.getElementById('minutos').textContent = minutos < 10 ? '0' + minutos : minutos;
-    document.getElementById('segundos').textContent = segundos < 10 ? '0' + segundos : segundos;
-  }
+    const elementos = {
+        meses: document.getElementById('meses'),
+        dias: document.getElementById('dias'),
+        horas: document.getElementById('horas'),
+        minutos: document.getElementById('minutos'),
+        segundos: document.getElementById('segundos')
+    };
+    
+    if (elementos.meses && elementos.dias && elementos.horas && elementos.minutos && elementos.segundos) {
+        elementos.meses.textContent = meses;
+        elementos.dias.textContent = dias;
+        elementos.horas.textContent = horas < 10 ? '0' + horas : horas;
+        elementos.minutos.textContent = minutos < 10 ? '0' + minutos : minutos;
+        elementos.segundos.textContent = segundos < 10 ? '0' + segundos : segundos;
+    }
+}
   
-  // Atualiza o contador a cada 1 segundo
-  setInterval(atualizarContador, 1000);
-  atualizarContador(); // Chama imediatamente para exibir o contador sem espera
-// Seleciona todas as imagens do slide
-const slides = document.querySelectorAll(".slide img");
+// Atualiza o contador a cada 1 segundo
+setInterval(atualizarContador, 1000);
+atualizarContador(); // Chama imediatamente para exibir o contador sem espera
 
 // Função para alterar o fundo conforme a imagem do slide
 function changeBackground() {
-    // O contador vai acompanhar o índice da imagem atual no slide
-    let currentIndex = 0;
+    // Seleciona todas as imagens do slide
+    const slides = document.querySelectorAll(".slide img");
+    const container = document.getElementById("background-container");
+    
+    if (slides.length === 0 || !container) {
+        console.warn("Slides ou container de fundo não encontrados.");
+        return;
+    }
+
+    let currentIndex = 0; // Índice da imagem atual
 
     setInterval(() => {
         // Atualiza o fundo do container com a imagem correspondente
         const currentImage = slides[currentIndex].src;
-        document.getElementById("background-container").style.backgroundImage = url(${currentImage});
+        container.style.backgroundImage = `url(${currentImage})`;
 
         // Atualiza o índice para a próxima imagem
-        currentIndex = (currentIndex + 1) % slides.length; // Voltando para o início quando chegar ao final
+        currentIndex = (currentIndex + 1) % slides.length; // Volta para o início ao atingir o final
     }, 6000); // A cada 6 segundos, muda a imagem de fundo
 }
 
 // Inicia a troca de fundo assim que a página for carregada
-window.onload = changeBackground;
+window.onload = () => {
+    changeBackground();
+};
