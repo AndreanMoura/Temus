@@ -1,1 +1,71 @@
-git commit -m first commit
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Tempo ❤ </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<H1>Nosso tempo juntos ❤</H1>
+<h2>10/08/2024</h2>
+<!-- Relógio (Meses, Dias, Horas, Minutos e Segundos) -->
+<div id="relogio">
+    <div class="tempo-item">
+      <span class="rótulo">Meses</span>
+      <span id="meses" class="valor">0</span>
+    </div>
+    <div class="tempo-item">
+      <span class="rótulo">Dias</span>
+      <span id="dias" class="valor">0</span>
+    </div>
+    <div class="tempo-item">
+      <span class="rótulo">Horas</span>
+      <span id="horas" class="valor">00</span>
+    </div>
+    <div class="tempo-item">
+      <span class="rótulo">Minutos</span>
+      <span id="minutos" class="valor">00</span>
+    </div>
+    <div class="tempo-item">
+      <span class="rótulo">Segundos</span>
+      <span id="segundos" class="valor">00</span>
+    </div>
+  </div>
+
+  <!-- Adicionando o div do fundo dinâmico -->
+<div id="background-container"></div>
+
+  <!-- Slide de fotos -->
+  <div id="slider-container">
+    <div id="slider">
+      <div class="slide"><img src="Img/Foto01.jpeg" alt="Imagem 1"></div>
+      <div class="slide"><img src="Img/foto02.jpeg" alt="Imagem 2"></div>
+      <div class="slide"><img src="Img/foto03.jpeg" alt="Imagem 3"></div>
+      <div class="slide"><img src="Img/foto04.jpeg" alt="Imagem 4"></div>
+    </div>
+  </div>
+
+  <p>Amor é pra você lembra de todos os nossos momentos juntos, e também lembrar de quanto tempo a gente tem juntos!</p>
+
+  <script>
+    window.onload = function() {
+      let images = document.querySelectorAll('.slide img');
+      images.forEach(img => {
+        img.onload = function() {
+          let imgRatio = img.naturalWidth / img.naturalHeight;
+          let container = img.closest('.slide');
+          
+          if (imgRatio > 1) {
+            container.style.height = 'auto';  // Ajusta automaticamente a altura para imagens mais largas
+          } else {
+            container.style.height = '750px';  // Altura fixa para imagens mais altas
+          }
+        }
+      });
+    }
+  </script>
+  
+  <script src="script.js"></script>
+</body>
+</html>
